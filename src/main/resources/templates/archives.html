@@ -14,7 +14,7 @@
 
 <!--nav:导航部分-->
 <!--条:segment;黑色:inverted反转色-->
-<nav class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
+<nav th:replace="_fragments :: menu(4)" class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
     <div class="ui container">
         <!--组件部分-->
         <div class="ui inverted secondary stackable menu fluid large">
@@ -71,17 +71,17 @@
             </div>
         </div>
 
-        <th:block th:each="item : ${archiveMap}">
+         <th:block th:each="item : ${archiveMap}">
             <br>
             <div>
                 <h3 class="ui center aligned header" th:text="${item.key}">2017</h3>
             </div>
 
             <div class="ui fluid vertical menu">
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
+                <a href="#"  th:href="@{/blog/{id}(id=${blog.id})}"class="item" target="_blank" th:each="blog : ${item.value}">
                 <span>
                     <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
+                    <span  th:text="${blog.title}" style="font-size: medium">
                         关于刻意练习的清单
                     </span>
                     <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
@@ -91,106 +91,11 @@
                         <div class="ui orange  label" th:text="${blog.flag}">原创</div>
                     </span>
                 </a>
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
 
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
-
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
-
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
             </div>
 
-            <div>
-                <h3 class="ui center aligned header" th:text="${item.key}">2016</h3>
-            </div>
 
-            <div class="ui fluid vertical menu">
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
-
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
-
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
-
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
-                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog : ${item.value}">
-                <span>
-                    <i class="teal circle icon"></i>
-                    <span th:text="${blog.title}"  style="font-size: medium">
-                        关于刻意练习的清单
-                    </span>
-                    <div class="ui teal left pointing label m-padded-tb-mini" th:text="${#dates.format(blog.updateTime,'MMM-dd')}">9月03号</div>
-
-                </span>
-                    <span class="m-right">
-                        <div class="ui orange  label" th:text="${blog.flag}">原创</div>
-                    </span>
-                </a>
-            </div>
-        </th:block>
+         </th:block>
 
     </div>
 </div>
@@ -209,7 +114,7 @@
 <br>
 <br>
 <!--页面底部-->
-<footer class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
+<footer th:replace="_fragments :: foot"  class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
     <div class="ui center aligned container">
 
         <div class="ui inverted divided grid stackable"><!--作用把页面分为16份-->
@@ -217,7 +122,7 @@
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="../static/images/5.jpg" class="ui rounded image" style="width: 110px">
+                        <img src="../static/images/5.jpg" th:src="@{/images/5.jpg}" class="ui rounded image" style="width: 110px">
                     </div>
                 </div>
             </div>

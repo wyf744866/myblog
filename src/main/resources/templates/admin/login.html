@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!--定义移动端缩放，比例变化-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <!--css引入-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+
+
+<!--nav:导航部分-->
+<!--条:segment;黑色:inverted反转色-->
+<nav th:replace="_fragments :: menu(0)"   class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393d49;">
+    <div class="ui container">
+        <!--组件部分-->
+        <div class="ui inverted secondary stackable menu fluid large">
+            <!--七个标志部分-->
+            <a href="/index" th:href="@{/index}"><h1 class="ui teal header item">MyBlog</h1></a>
+            <a href="/index" th:href="@{/index}"class=" item m-text-lfat m-mobile-hide" th:classappend="${n==1} ? active" id="002"><i class="home icon"></i>首页</a>
+            <a href="/types/-1" th:href="@{/types}" class="item m-text-lfat m-mobile-hide" th:classappend="${n==2} ? active" id="003"><i class="idea icon"></i>分类</a>
+            <a href="/tags/-1" th:href="@{/tags}" class="item m-text-lfat m-mobile-hide" th:classappend="${n==3} ? active" id="004"><i class="tags icon"></i>标签</a>
+            <a href="/archives" th:href="@{/archives}"  class="item m-text-lfat m-mobile-hide" th:classappend="${n==4} ? active" id="005"><i class="clone icon"></i>归档</a>
+            <a href="/about/1" th:href="@{/about}" class="item m-text-lfat m-mobile-hide" th:classappend="${n==5} ? active" id="006"><i class="info icon"></i>关于网站</a>
+
+            <!--搜索栏-->
+            <div class="right item m-mobile-hide" id="007">
+                <!--搜索要提交的地址-->
+                <form id="search_form" action="/search" target="_blank" method="post">
+                    <div class="ui icon input">
+                        <input type="text" name="search" placeholder="Search">
+                        <!--点击搜索的icon会提交表单-->
+                        <i onclick="document.forms['search_form'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+            <!--登录注册-->
+            <a href="/login"th:href="@{/admin}" class="item m-text-lfat m-mobile-hide " id="008">登录</a>
+            <a href="/register" class="item m-text-lfat m-mobile-hide m-margin-l-min" id="009">注册</a>
+        </div>
+    </div>
+    <a href="#" class="ui menu icon button m-right-top m-mobile-show" id="001" style="background: #393D49;">
+        <div class="ui vertical animated button tiny">
+            <div class="hidden content ">菜单</div>
+            <div class="visible content ">
+                <i class="sidebar icon"></i>
+            </div>
+        </div>
+    </a>
+</nav>
+
+<!--中间内容-->
+<!--放自己定义的提示信息,strings.isEmpty不显示区域，有消息的时候显示这个区域-->
+<div class="m-padded-t-massive m-container-min">
+
+    <!--成功的消息-->
+    <div class="ui mini success message m-padded-tb" style="font-size: small"
+         th:unless="${#strings.isEmpty(sucmessage)}">
+        <i class="close icon"></i>
+        <div class="header">提示信息：</div>
+        <p th:text="${sucmessage}"></p>
+    </div>
+    <!--放自己定义的失败的消息-->
+    <div class="ui mini negative message " style="font-size: small"
+         th:unless="${#strings.isEmpty(errormessage)}">
+        <i class="close icon m-right"></i>
+        <div class="header">提示信息：</div>
+        <p th:text="${errormessage}"></p>
+    </div>
+
+    <div class="container ">
+        <div class="ui attached message">
+            <div class="header">
+                Welcome to our MyBlog!
+            </div>
+            <p>请登录</p>
+        </div>
+        <form class="ui form attached fluid segment" method="post" action="#" th:action="@{/admin/login}">
+
+            <div class="field">
+                <label>用户名</label>
+                <div class="ui icon input">
+                    <input placeholder="Username" type="text" name="username">
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>密码</label>
+                <div class="ui icon input">
+                    <i class="lock icon"></i>
+                    <input placeholder="Password" type="password" name="password">
+                </div>
+            </div>
+
+            <button class="ui teal submit button small ">登录</button>
+
+            <!--存放错误信息-->
+            <div class="ui error message"></div>
+        </form>
+        <div class="ui bottom attached warning message">
+            <i class="icon help"></i>
+            还没有账户 ？ <a href="/register">在此注册</a>
+        </div>
+    </div>
+</div>
+
+
+<!--jquery引入-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<!--js引入-->
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<!--js-->
+<script>
+    /*手机端菜单按钮*/
+    $("#001").click(function () {
+        $("#002").toggleClass('m-mobile-hide');
+        $("#003").toggleClass('m-mobile-hide');
+        $("#004").toggleClass('m-mobile-hide');
+        $("#005").toggleClass('m-mobile-hide');
+        $("#006").toggleClass('m-mobile-hide');
+        $("#007").toggleClass('m-mobile-hide');
+        $("#008").toggleClass('m-mobile-hide');
+        $("#009").toggleClass('m-mobile-hide');
+    });
+    /*下拉框*/
+    $('.ui.dropdown').dropdown({});
+
+    /*表单验证*/
+    $('.ui.form').form({
+        fields: {
+            username : {
+                identifier: 'username',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入用户名'
+                }]
+            },
+            password: {
+                identifier: 'password',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入密码'
+                }]
+            }
+        }
+    });
+
+    /*关闭消息提示框,中间一定要加空格，表示msg里面的close*/
+    $('.message .close').click(function () {
+        $(this)
+            .closest('.message')
+            .transition('fade');
+    });
+</script>
+</body>
+</html>

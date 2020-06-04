@@ -6,6 +6,8 @@ spring:
   profiles:
     active: dev
 
+#配置用户的静态头像地址
+comment.avatar: /images/1.jpg
 
 
 

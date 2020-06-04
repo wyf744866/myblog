@@ -14,7 +14,7 @@
 
 <!--nav:导航部分-->
 <!--条:segment;黑色:inverted反转色-->
-<nav class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
+<nav th:replace="_fragments :: menu(5)" class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
     <div class="ui container">
         <!--组件部分-->
         <div class="ui inverted secondary stackable menu fluid large">
@@ -60,16 +60,16 @@
         <!--顶部-->
         <div class="ui top attached segment ">
             <div class="ui secondary pointing menu ">
-                <a class="item" href="about_1.html">
+                <a class="item" href="about_1.html" th:href="@{/about/1}">
                     <i class="home icon"></i> 关于本站
                 </a>
-                <a class="active item">
+                <a class="active item" th:href="@{/about/2}">
                     <i class="mail icon"></i> 留言墙
                 </a>
             </div>
             <!--图片区域 attached是将头部与图片区域连接起来-->
             <img class="ui fluid image "
-                 src="../static/images/3.jpg">
+                 src="../static/images/3.jpg" th:src="@{/images/3.jpg}">
         </div>
         <!--留言信息-->
         <div id="comment-div" class="ui bottom segment" >
@@ -162,7 +162,7 @@
                     <div class="field m-mobile-wide m-margin-bottom-small">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="nickname" placeholder="姓名" th:value="${session.user}!=null ? ${session.user.username}">
+                            <input type="text" name="nickname" placeholder="姓名" th:value="${session.user}!=null ? ${session.user.nikename}">
                         </div>
                     </div>
                     <div class="field  m-margin-bottom-small m-mobile-wide">
@@ -187,7 +187,7 @@
 <br>
 <br>
 <!--页面底部-->
-<footer class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
+<footer th:replace="_fragments :: foot" class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
     <div class="ui center aligned container">
 
         <div class="ui inverted divided grid stackable"><!--作用把页面分为16份-->

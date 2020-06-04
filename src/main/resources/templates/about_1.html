@@ -14,7 +14,7 @@
 
 <!--nav:导航部分-->
 <!--条:segment;黑色:inverted反转色-->
-<nav class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
+<nav th:replace="_fragments :: menu(5)" class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
     <div class="ui container">
         <!--组件部分-->
         <div class="ui inverted secondary stackable menu fluid large">
@@ -59,16 +59,16 @@
     <div class="ui container m-container-normal">
         <div class="ui attached segment ">
             <div class="ui secondary pointing menu ">
-                <a class="active item">
+                <a class="active item" th:href="@{/about/1}">
                     <i class="home icon"></i> 关于本站
                 </a>
-                <a class="item" href="about_2.html">
+                <a class="item" href="about_2.html" th:href="@{/about/2}">
                     <i class="mail icon"></i> 留言墙
                 </a>
             </div>
             <div class="item ">
                 <!--头像-->
-                <img src="../static/images/2.jpg" alt="" class="ui circular centered image"
+                <img src="../static/images/2.jpg" th:src="@{/images/2.jpg}" alt="" class="ui circular centered image"
                      style="width: 280px">
                 <br>
                 <!--名字-->
@@ -92,7 +92,7 @@
 <br>
 <br>
 <!--页面底部-->
-<footer class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
+<footer th:replace="_fragments :: foot" class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
     <div class="ui center aligned container">
 
         <div class="ui inverted divided grid stackable"><!--作用把页面分为16份-->

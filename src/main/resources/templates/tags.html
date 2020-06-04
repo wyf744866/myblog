@@ -14,7 +14,7 @@
 
 <!--nav:导航部分-->
 <!--条:segment;黑色:inverted反转色-->
-<nav class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
+<nav th:replace="_fragments :: menu(3)" class="ui attached segment m-padded-tb-min m-shadow-small" style="background: #393D49;">
     <div class="ui container">
         <!--组件部分-->
         <div class="ui inverted secondary stackable menu fluid large">
@@ -75,7 +75,7 @@
             <div class="ui m-margin-lr-tiny m-margin-tb-small">
                 <a href="#" th:href="@{/tags/{id}(id=${tag.id})}"
                    class="ui tag label m-margin-lr-small m-margin-tb-tiny"
-                   th:classappend="${tag.id==activeTagId} ? 'purple'" th:each="tag : ${tags}">
+                   th:classappend="${tag.id==activeTagId} ? purple" th:each="tag : ${tags}">
                     <span th:text="${tag.name}" style="font-size: small">springboot</span>
                     <!--<div class="floating ui mini red label">...</div>--><!-- th:text="${#arrays.length(tag.blogs)}"-->
                 </a>
@@ -126,11 +126,6 @@
                             <div class="five wide column right aligned ">
                                 <div href="#" target="_blank" class="ui label" th:text="${blog.type.name}">
                                     认知升级
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="#" class="ui basic teal left pointing label m-padded-min">spingboot</a>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +187,7 @@
 <br>
 <br>
 <!--页面底部-->
-<footer class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
+<footer th:replace="_fragments :: foot" class="ui inverted attached segment m-padded-tb-medium " style="background: #2c2c2c;">
     <div class="ui center aligned container">
 
         <div class="ui inverted divided grid stackable"><!--作用把页面分为16份-->
@@ -200,7 +195,7 @@
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="../static/images/5.jpg" class="ui rounded image" style="width: 110px">
+                        <img src="../static/images/5.jpg" th:src="@{/images/5.jpg}" class="ui rounded image" style="width: 110px">
                     </div>
                 </div>
             </div>

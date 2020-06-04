@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <!--定义移动端缩放，比例变化-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">MyBlog博客页</title>
+    <!--css引入-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <!--文章的排版：typo的样式css-->
+    <link rel="stylesheet" href="../static/css/typo.css"  th:href="@{/css/typo.css}">
+    <!--代码高亮样式css：<code class="language-css"></code>-->
+    <link rel="stylesheet" href="../static/lib/prism/prism.css"  th:href="@{/lib/prism/prism.css}">
+    <!--自动生成目录-->
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+
+</head>
+<body>
+<!--nav:导航部分-->
+<!--条:segment;黑色:inverted反转色-->
+<nav th:fragment= "menu(n)" class="ui attached segment  m-padded-tb-min m-shadow-small" style="background: #393D49;">
+    <div class="ui container">
+        <!--组件部分-->
+        <div class="ui inverted secondary stackable menu fluid large">
+            <!--3个标志部分-->
+            <a href="/admin/index" th:href="@{/admin/index}"><h1 class="ui teal header item">MyBlog</h1></a>
+            <a href="/admin/blogs_manage" th:href="@{/admin/blogs_manage}"class="item m-text-lfat m-mobile-hide" th:classappend="${n==1} ? active" id="002"><i class="home icon"></i>博客</a>
+            <a href="/admin/types_manage"th:href="@{/admin/types_manage}" class="item m-text-lfat m-mobile-hide" th:classappend="${n==2} ? active" id="003"><i class="idea icon"></i>分类</a>
+            <a href="/admin/tags_manage"th:href="@{/admin/tags_manage}" class="item m-text-lfat m-mobile-hide" th:classappend="${n==3} ? active" id="004"><i class="tags icon"></i>标签</a>
+            <!--用户登录导航栏-->
+            <div class="right menu m-mobile-hide item  m-padded-tb-min" id="005">
+                <div class=" ui dropdown item">
+                    <div class="text" >
+                        <img class="ui avatar image" src="../../static/images/4.jpg" th:src="@{${session.user.avatar}}">
+                        <span th:text="${session.user.nikename}">admin</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="/admin/blogs_manage" class="item m-text-thin ">个人中心</a>
+                        <a href="/logout" th:href="@{/admin/logout}" class="item m-text-thin ">退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu icon button m-right-top m-mobile-show" id="001" style="background: #393D49;">
+        <div class="ui vertical animated button tiny">
+            <div class="hidden content ">菜单</div>
+            <div class="visible content ">
+                <i class="sidebar icon"></i>
+            </div>
+        </div>
+    </a>
+</nav>
+</body>
+</html>
